@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+
+	<div>
+		<h2>Pedido</h2>
+		<h3>Datos del Pedido</h3>
+		<h:form>
+			
+			<h:outputLabel value="Nombres del cliente" />
+			<h:inputText value="#{pedidoMb.pedido.nombres}" />
+			
+			
+			<h:outputLabel value="Observaciones" />
+			<h:inputTextarea value="#{pedidoMb.pedido.observaciones}" />
+			
+			
+			<h4>Datos de comida</h4>
+			<h:outputLabel value="Nombres comida" />
+			<h:inputText value="#{pedidoMb.comida.nombre}">
+			</h:inputText>
+				
+			<h:outputLabel value="Precio unitario" />
+			<h:inputText id="nuevo" value="#{pedidoMb.comida.precioUnitario}">
+				
+			</h:inputText>
+			<h:commandButton action="#{pedidoMb.agregarComida()}" value="Agregar" />
+			
+			<h4>Totales</h4>
+			
+			<h:outputLabel value="Subtotal" />
+			<h:outputLabel value="#{pedidoMb.subtotal}"/>
+			
+			<h:outputLabel value="Iva" />
+			<h:outputLabel value="#{pedidoMb.iva}"/>
+			
+			<h:outputLabel value="Total" />
+			<h:outputLabel value="#{pedidoMb.total}"/>
+			
+			<h:commandButton action="#{pedidoMb.realizarPedido()}" value="Pagar" />
+			
+		</h:form>
+		
+	</div>
+
+</body> 
+</html>
