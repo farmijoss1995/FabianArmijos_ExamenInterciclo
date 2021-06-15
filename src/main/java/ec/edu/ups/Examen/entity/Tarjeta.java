@@ -1,8 +1,5 @@
 package ec.edu.ups.Examen.entity;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,26 +12,18 @@ import javax.persistence.Table;
 public class Tarjeta {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	
-	private long numero;
+	private int numero;
 	
 	private String nombreTitular;
 	
-	private Date fechaCaducidad;
+	private String fechaCaducidad;
 	
 	private int codigo;
 	
-	private List<Pedido> pedidos;
 	
-	
-	public void agregarPedido(Pedido pedido) {
-		if (this.pedidos != null) {
-			pedidos.add(pedido);
-		}
-		pedidos = new ArrayList<Pedido>();
-	}
 
 	public int getId() {
 		return id;
@@ -44,11 +33,11 @@ public class Tarjeta {
 		this.id = id;
 	}
 
-	public long getNumero() {
+	public int getNumero() {
 		return numero;
 	}
 
-	public void setNumero(long numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 
@@ -60,11 +49,11 @@ public class Tarjeta {
 		this.nombreTitular = nombreTitular;
 	}
 
-	public Date getFechaCaducidad() {
+	public String getFechaCaducidad() {
 		return fechaCaducidad;
 	}
 
-	public void setFechaCaducidad(Date fechaCaducidad) {
+	public void setFechaCaducidad(String fechaCaducidad) {
 		this.fechaCaducidad = fechaCaducidad;
 	}
 
@@ -76,14 +65,5 @@ public class Tarjeta {
 		this.codigo = codigo;
 	}
 
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
-	
-	
 	
 }

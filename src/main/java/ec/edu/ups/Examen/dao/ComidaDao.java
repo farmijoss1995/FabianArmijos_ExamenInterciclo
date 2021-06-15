@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import ec.edu.ups.Examen.entity.Comida;
 
 
-
 public class ComidaDao {
 
 	@Inject

@@ -1,5 +1,7 @@
 package ec.edu.ups.Examen.bussiness;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -7,6 +9,8 @@ import ec.edu.ups.Examen.dao.ComidaDao;
 import ec.edu.ups.Examen.dao.PedidoDao;
 import ec.edu.ups.Examen.entity.Comida;
 import ec.edu.ups.Examen.entity.Pedido;
+
+
 
 
 
@@ -20,12 +24,14 @@ public class PedidoOn {
 	private ComidaDao comidaDao;
 	
 	public void nuevoPedido(Pedido pedido) {
-		for (int i = 0; i < pedido.getComidas().size(); i++) {
-			Comida comida = pedido.getComidas().get(i);
+		for (Comida comida : pedido.getComidas()) {
 			comida.setPedido(pedido);
-			comidaDao.nuevaComida(comida);
 		}
 		pedidoDao.nuevoPedido(pedido);
+	}
+	
+	public List<Pedido> pedidos(){
+		return pedidoDao.general();
 	}
 	
 }

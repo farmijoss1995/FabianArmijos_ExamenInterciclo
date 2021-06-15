@@ -9,11 +9,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "pedido")
 public class Pedido {
 	
 	@Id
@@ -32,15 +34,19 @@ public class Pedido {
 	
 	private String observaciones;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pedido")
 	private List<Comida> comidas;
+	
+	@ManyToOne
+	private Tarjeta tarjeta;
 	
 	
 	public void agregarComida(Comida comida) {
-		if (this.comidas != null) {
-			this.comidas.add(comida);
+		if (this.comidas == null) {
+			this.comidas = new ArrayList<Comida>();
 		}
-		this.comidas = new ArrayList<Comida>();
+		this.comidas.add(comida);
+		System.out.println(comidas.size());
 		
 	}
 
@@ -108,10 +114,13 @@ public class Pedido {
 		this.comidas = comidas;
 	}
 
-	@Override
-	public String toString() {
-		return "Pedido [id=" + id + ", numero=" + numero + ", nombres=" + nombres + ", subtotal=" + subtotal + ", iva="
-				+ iva + ", total=" + total + ", observaciones=" + observaciones + ", comidas=" + comidas + "]";
+	
+	public Tarjeta getTarjeta() {
+		return tarjeta;
+	}
+
+	public void setTarjeta(Tarjeta tarjeta) {
+		this.tarjeta = tarjeta;
 	}
 	
 	
